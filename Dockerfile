@@ -1,10 +1,11 @@
 FROM php:7.1-apache
 
-RUN apt-get install sudo less build-essential software-properties-common -y
-
 RUN apt-get update && apt-get install --no-install-recommends -y \
     cron \
+    sudo \
     libc-client-dev \
+    build-essential  \
+    oftware-properties-common \
     libicu-dev \
     libkrb5-dev \
     libmcrypt-dev \
