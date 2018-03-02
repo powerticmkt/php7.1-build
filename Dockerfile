@@ -16,6 +16,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     tcl8.5 \
     nano \
     dialog \
+    jq \
+    nfs-common \
+    less \
     g++ \
     git \
     libmagickwand-dev \
@@ -37,9 +40,11 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN docker-php-ext-configure imap --with-imap --with-imap-ssl --with-kerberos;
+RUN pecl install memcached-2.2.0
 
-RUN docker-php-ext-install bcmath imap exif intl mbstring mcrypt mysqli pdo xml pdo_mysql zip gd soap
+RUN docker-php-ext-configure imap --with-imap --with-imap-ssl --with-kerberos
+
+RUN docker-php-ext-install bcmath imap exif intl mbstring mcrypt mysqli pdo xml pdo_mysql zip gd soap opcache
 
 RUN docker-php-ext-configure bcmath
 
@@ -52,7 +57,7 @@ RUN docker-php-ext-configure gd \
 
 RUN pecl install imagick -y
 
-RUN docker-php-ext-enable imagick
+RUN docker-php-ext-enable imagick memcached
 
 # Set  PHP.ini settings
 RUN { \
@@ -96,3 +101,7 @@ RUN a2enconf powertic
 # Enable Apache Modules
 RUN a2enmod rewrite
 RUN a2enmod expires
+
+# Clean Up
+RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
+RUN rm -rf /var/lib/apt/lists/*
