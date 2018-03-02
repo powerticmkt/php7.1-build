@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     sudo \
     libc-client-dev \
     build-essential  \
-    oftware-properties-common \
+    software-properties-common \
     libicu-dev \
     libkrb5-dev \
     libmcrypt-dev \
