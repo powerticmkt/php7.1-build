@@ -69,8 +69,6 @@ RUN { \
       echo 'max_execution_time=999999'; \
     } > /usr/local/etc/php/conf.d/powertic.ini
 
-RUN a2enconf powertic
-
 
 # Set Apache Cache Settings
 RUN { \
@@ -93,7 +91,7 @@ RUN { \
       echo  '</IfModule>'; \
     } > /etc/apache2/conf-available/powertic.conf
 
-
+RUN a2enconf powertic
 
 # Enable Apache Modules
 RUN a2enmod rewrite
