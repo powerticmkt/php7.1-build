@@ -40,8 +40,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN pecl install memcached-2.2.0
-
 RUN docker-php-ext-configure imap --with-imap --with-imap-ssl --with-kerberos
 
 RUN docker-php-ext-install bcmath imap exif intl mbstring mcrypt mysqli pdo xml pdo_mysql zip gd soap opcache
@@ -57,7 +55,7 @@ RUN docker-php-ext-configure gd \
 
 RUN pecl install imagick -y
 
-RUN docker-php-ext-enable imagick memcached
+RUN docker-php-ext-enable imagick
 
 # Set  PHP.ini settings
 RUN { \
