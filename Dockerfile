@@ -36,7 +36,12 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libjpeg-dev \
     libpng12-dev \
     libfreetype6-dev \
+    python \
+    python-pip \
     mysql-client
+
+# install aws command line
+RUN pip install awscli
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -65,7 +70,7 @@ RUN { \
       echo 'opcache.revalidate_freq=2'; \
       echo 'opcache.fast_shutdown=1'; \
       echo 'opcache.enable_cli=1'; \
-      echo 'memory_limit=512M'; \
+      echo 'memory_limit=196M'; \
       echo 'file_uploads = On'; \
       echo 'upload_max_filesize=128M'; \
       echo 'post_max_size=128M'; \
