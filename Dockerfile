@@ -70,7 +70,7 @@ RUN { \
       echo 'opcache.revalidate_freq=2'; \
       echo 'opcache.fast_shutdown=1'; \
       echo 'opcache.enable_cli=1'; \
-      echo 'memory_limit=196M'; \
+      echo 'memory_limit=256M'; \
       echo 'file_uploads = On'; \
       echo 'upload_max_filesize=128M'; \
       echo 'post_max_size=128M'; \
