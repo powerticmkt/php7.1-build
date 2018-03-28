@@ -2,7 +2,6 @@ FROM php:7.0-apache
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     cron \
-    sudo \
     libc-client-dev \
     build-essential  \
     software-properties-common \
@@ -80,9 +79,6 @@ RUN { \
 
 # Set Apache Cache Settings
 RUN { \
-      echo  '<filesMatch ".(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">'; \
-      echo  '  Header set Cache-Control "max-age=8400600, public"'; \
-      echo  '</filesMatch>'; \
       echo  '<IfModule mod_expires.c>'; \
       echo  '  ExpiresActive On'; \
       echo  '  ExpiresByType image/jpg "access 1 year"'; \
